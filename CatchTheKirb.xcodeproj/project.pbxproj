@@ -24,6 +24,7 @@
 		E48B803028F4E710002870C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E48B803328F4E710002870C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E48B803528F4E710002870C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E48B803B28F4F82F002870C1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		E48B801B28F4E70D002870C1 = {
 			isa = PBXGroup;
 			children = (
+				E48B803B28F4F82F002870C1 /* README.md */,
 				E48B802628F4E70D002870C1 /* CatchTheKirb */,
 				E48B802528F4E70D002870C1 /* Products */,
 			);
