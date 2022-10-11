@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     var score = 0
     var timer = Timer()
     var counter = 0
+    var kirbArray = [UIImageView]()
+    var hideTimer = Timer()
     
     
     //Views
@@ -68,12 +70,27 @@ class ViewController: UIViewController {
         kirb9.addGestureRecognizer(regognizer9)
         
         
+        kirbArray = [kirb1, kirb2, kirb3, kirb4, kirb5 ,kirb6, kirb7, kirb8, kirb9]
+        
+        
         //Timer
         counter = 10
         timeLabel.text = "\(counter)"
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown) , userInfo: nil, repeats: true)
+        hideTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(hideKirb), userInfo: nil, repeats: true)
         
+        hideKirb()
+        
+    }
+    
+    @objc func hideKirb() {
+        for kirb in kirbArray {
+            kirb.isHidden = true
+        }
+        
+        let random = Int(arc4random_uniform(UInt32(kirbArray.count - 1)))
+        kirbArray[random].isHidden = false
     }
     
     @objc func increaseScore(){
@@ -88,6 +105,10 @@ class ViewController: UIViewController {
         
         if counter == 0 {
             timer.invalidate()
+            hideTimer.invalidate()
+            for kirb in kirbArray {
+                kirb.isHidden = true
+            }
             
             //Alert
             
