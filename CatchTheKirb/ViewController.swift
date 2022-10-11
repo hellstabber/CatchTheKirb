@@ -9,14 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //Variables
     var score = 0
+    var timer = Timer()
+    var counter = 0
     
-
+    
+    //Views
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    
-    
     @IBOutlet weak var kirb1: UIImageView!
     @IBOutlet weak var kirb2: UIImageView!
     @IBOutlet weak var kirb3: UIImageView!
@@ -33,6 +35,8 @@ class ViewController: UIViewController {
         
         scoreLabel.text = "Score \(score)"
         
+        
+        //Images
         kirb1.isUserInteractionEnabled = true
         kirb2.isUserInteractionEnabled = true
         kirb3.isUserInteractionEnabled = true
@@ -64,11 +68,40 @@ class ViewController: UIViewController {
         kirb9.addGestureRecognizer(regognizer9)
         
         
+        //Timer
+        counter = 10
+        timeLabel.text = "\(counter)"
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown) , userInfo: nil, repeats: true)
+        
     }
     
     @objc func increaseScore(){
         score += 1
         scoreLabel.text = "Score: \(score)"
+    }
+    
+    @objc func countDown() {
+        
+        counter -= 1
+        timeLabel.text = "\(counter)"
+        
+        if counter == 0 {
+            timer.invalidate()
+            
+            //Alert
+            
+            let alert = UIAlertController(title: "Time's UP!", message: "Do you want to play again?", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel)
+            let replayButton = UIAlertAction(title: "Replay", style: UIAlertAction.Style.default) {
+                (UIAlertAction) in
+                //Replay function
+                
+            }
+            alert.addAction(okButton)
+            alert.addAction(replayButton)
+            self.present(alert, animated: true)
+        }
     }
 
 }
