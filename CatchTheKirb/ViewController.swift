@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var counter = 0
     var kirbArray = [UIImageView]()
     var hideTimer = Timer()
+    var highScore = 0
     
     
     //Views
@@ -36,6 +37,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         scoreLabel.text = "Score \(score)"
+        
+        //Highscore check
+        
+        let storedHighScore = UserDefaults.standard.object(forKey: "highscore")
+        
+        if storedHighScore == nil {
+            highScore = 0
+            highScoreLabel.text = "Highscore: \(highScore)"
+        }
+        
+        if let newScore = storedHighScore as? Int {
+            highScore = newScore
+            highScoreLabel.text = "Highscore: \(highScore)"
+        }
         
         
         //Images
@@ -108,6 +123,14 @@ class ViewController: UIViewController {
             hideTimer.invalidate()
             for kirb in kirbArray {
                 kirb.isHidden = true
+            }
+            
+            //Highscore
+            
+            if self.score > self.highScore {
+                self.highScore = self.score
+                highScoreLabel.text = "Highscore: \(self.highScore)"
+                UserDefaults.standard.set(self.highScore, forKey: "highscore")
             }
             
             //Alert
